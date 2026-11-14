@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nadia Mabiala – Développeuse web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF2F6; --surface:#FFFFFF; --ink:#14213D; --muted:#51607A;
+  --accent:#2A6F97; --accent-ink:#FFFFFF; --sun:#F2B134; --line:#D3DCE6;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'Public Sans','Segoe UI',system-ui,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1626; --surface:#16223A; --ink:#E8EEF7; --muted:#9AA9C2;
+    --accent:#6BB6E0; --accent-ink:#0E1626; --sun:#F2B134; --line:#27365A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1626; --surface:#16223A; --ink:#E8EEF7; --muted:#9AA9C2;
+  --accent:#6BB6E0; --accent-ink:#0E1626; --sun:#F2B134; --line:#27365A;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
+
+header.top{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0}
+.logo{font:800 1.25rem var(--display);text-decoration:none;letter-spacing:-.01em}
+nav{display:flex;align-items:center;gap:1.5rem}
+nav a{text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--ink)}
+#theme{background:none;border:1px solid var(--line);color:var(--ink);width:2.4rem;height:2.4rem;border-radius:50%;cursor:pointer;font-size:1.1rem}
+#theme:hover{background:var(--surface)}
+
+.hero{padding:4rem 0 5rem}
+.hero .hello{color:var(--muted);margin:0 0 .5rem;font-weight:500}
+.hero h1{font:800 clamp(3rem,9vw,6.5rem)/.95 var(--display);letter-spacing:-.035em;margin:0 0 1.5rem}
+.hero h1 span{display:block}
+.role{font:500 clamp(1.25rem,3vw,1.75rem) var(--display);margin:0 0 1.25rem;min-height:2.2em}
+#typed{background:linear-gradient(transparent 62%,var(--sun) 62%);padding:0 .15em}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--ink);vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{max-width:36rem;color:var(--muted);margin:0 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;padding:.8rem 1.4rem;border-radius:.5rem;font-weight:600;text-decoration:none;border:2px solid var(--accent)}
+.btn.main{background:var(--accent);color:var(--accent-ink)}
+.btn.main:hover{filter:brightness(1.08)}
+.btn.ghost{color:var(--accent)}
+.btn.ghost:hover{background:var(--surface)}
+
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+h2{font:700 clamp(1.8rem,4vw,2.5rem)/1.1 var(--display);letter-spacing:-.02em;margin:0 0 1.5rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.about p{margin:0 0 1rem;max-width:34rem}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.facts li span:first-child{color:var(--muted)}
+.skills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.chip{padding:.3rem .8rem;border:1px solid var(--line);background:var(--surface);border-radius:2rem;font-size:.95rem}
+
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.filters button{font:500 1rem var(--body);background:none;color:var(--ink);border:1px solid var(--line);padding:.4rem 1rem;border-radius:2rem;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1.25rem}
+.project{background:var(--surface);border:1px solid var(--line);border-radius:.75rem;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem}
+.project[hidden]{display:none}
+.project h3{font:700 1.3rem var(--display);margin:0}
+.project p{margin:0;color:var(--muted);font-size:.98rem}
+.project .tag{font-size:.9rem;color:var(--accent);font-weight:600;margin-top:auto}
+
+.timeline{list-style:none;margin:0;padding:0 0 0 1.5rem;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding-bottom:1.75rem}
+.timeline li::before{content:"";position:absolute;left:-1.95rem;top:.5rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--sun);border:2px solid var(--bg)}
+.timeline strong{font-family:var(--display);font-size:1.15rem}
+.timeline .date{display:block;color:var(--muted);font-size:.95rem}
+
+form{display:grid;gap:1rem;max-width:34rem}
+label{display:grid;gap:.35rem;font-weight:500}
+input,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:.7rem .9rem}
+textarea{min-height:8rem;resize:vertical}
+#status{min-height:1.5rem;margin:0;color:var(--muted)}
+footer{padding:2rem 0 3rem;color:var(--muted);border-top:1px solid var(--line);font-size:.95rem}
+
+@media (max-width:42rem){
+  .about{grid-template-columns:1fr;gap:2rem}
+  nav a{display:none}
+  .hero{padding:2.5rem 0 3.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .caret{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#haut">N. Mabiala</a>
+    <nav aria-label="Navigation principale">
+      <a href="#apropos">À propos</a>
+      <a href="#projets">Projets</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button" aria-label="Changer de thème">◐</button>
+    </nav>
+  </header>
+
+  <main id="haut">
+    <div class="hero">
+      <p class="hello" id="greeting">Bonjour, je m’appelle</p>
+      <h1><span>Nadia</span><span>Mabiala.</span></h1>
+      <p class="role">Je suis <span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
+      <p class="lead">Je conçois des sites rapides, accessibles et faciles à utiliser, pour des associations, des commerces et des projets culturels.</p>
+      <div class="btns">
+        <a class="btn main" href="#projets">Voir mes projets</a>
+        <a class="btn ghost" href="#contact">Me contacter</a>
+      </div>
+    </div>
+
+    <section id="apropos">
+      <h2>À propos</h2>
+      <div class="about">
+        <div>
+          <p>J’ai commencé par bricoler des pages web pour l’association de mon quartier, puis j’en ai fait mon métier. J’aime les interfaces simples, le code lisible et les projets qui servent à quelque chose.</p>
+          <p>Quand je ne code pas, je lis des romans, je cuisine pour mes amis et je joue aux échecs en ligne.</p>
+          <div class="skills" aria-label="Compétences">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+            <span class="chip">React</span><span class="chip">Accessibilité</span><span class="chip">Figma</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li><span>Métier</span><span>Développeuse front-end</span></li>
+          <li><span>Expérience</span><span>5 ans</span></li>
+          <li><span>Langues</span><span>Français, anglais, lingala</span></li>
+          <li><span>Disponibilité</span><span>Missions freelance</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projets">
+      <h2>Projets</h2>
+      <div class="filters" role="group" aria-label="Filtrer les projets">
+        <button type="button" data-f="all" aria-pressed="true">Tous</button>
+        <button type="button" data-f="site" aria-pressed="false">Sites</button>
+        <button type="button" data-f="app" aria-pressed="false">Applications</button>
+      </div>
+      <div class="projects">
+        <article class="project" data-cat="site"><h3>Librairie du Fleuve</h3><p>Vitrine et catalogue pour une librairie indépendante, avec recherche instantanée.</p><span class="tag">Site · HTML, CSS, JS</span></article>
+        <article class="project" data-cat="app"><h3>Mes dépenses</h3><p>Suivi de budget personnel avec graphiques et export en CSV.</p><span class="tag">Application · React</span></article>
+        <article class="project" data-cat="site"><h3>Festival Mbongui</h3><p>Programme interactif d’un festival de musique, lisible hors connexion.</p><span class="tag">Site · PWA</span></article>
+        <article class="project" data-cat="app"><h3>Tournoi d’échecs</h3><p>Gestion des tables et des résultats pour un club de quartier.</p><span class="tag">Application · JavaScript</span></article>
+      </div>
+    </section>
+
+    <section id="parcours">
+      <h2>Parcours</h2>
+      <ul class="timeline">
+        <li><strong>Développeuse freelance</strong><span class="date">2023 – aujourd’hui</span>Sites et applications pour des petites structures.</li>
+        <li><strong>Développeuse front-end, Agence Pixel</strong><span class="date">2020 – 2023</span>Intégration et accessibilité de sites de marques.</li>
+        <li><strong>Licence en informatique</strong><span class="date">2017 – 2020</span>Spécialité développement web.</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <form id="form" novalidate>
+        <label>Votre nom<input name="nom" required autocomplete="name"></label>
+        <label>Votre e-mail<input name="email" type="email" required autocomplete="email"></label>
+        <label>Votre message<textarea name="message" required></textarea></label>
+        <button class="btn main" type="submit">Envoyer le message</button>
+        <p id="status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Nadia Mabiala. Tous droits réservés.</footer>
+</div>
+
+<script>
+// Salutation selon l’heure
+(function(){
+  var h = new Date().getHours();
+  var g = h < 6 ? "Bonne nuit" : h < 18 ? "Bonjour" : "Bonsoir";
+  document.getElementById("greeting").textContent = g + ", je m’appelle";
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+
+// Texte qui s’écrit tout seul
+(function(){
+  var words = ["développeuse web", "intégratrice", "designer d’interfaces", "curieuse"];
+  var el = document.getElementById("typed");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) { el.textContent = words[0]; return; }
+  var w = 0, c = 0, del = false;
+  function tick(){
+    var word = words[w];
+    el.textContent = word.slice(0, c);
+    if (!del && c === word.length) { del = true; return setTimeout(tick, 1400); }
+    if (del && c === 0) { del = false; w = (w + 1) % words.length; }
+    c += del ? -1 : 1;
+    setTimeout(tick, del ? 40 : 80);
+  }
+  tick();
+})();
+
+// Thème clair / sombre
+(function(){
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem("theme"); if (saved) root.setAttribute("data-theme", saved); } catch(e){}
+  document.getElementById("theme").addEventListener("click", function(){
+    var dark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch(e){}
+  });
+})();
+
+// Filtre des projets
+(function(){
+  var btns = document.querySelectorAll(".filters button");
+  var cards = document.querySelectorAll(".project");
+  btns.forEach(function(b){
+    b.addEventListener("click", function(){
+      btns.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      var f = b.dataset.f;
+      cards.forEach(function(c){ c.hidden = !(f === "all" || c.dataset.cat === f); });
+    });
+  });
+})();
+
+// Formulaire : ouvre le client mail (pas de serveur ici)
+(function(){
+  var form = document.getElementById("form"), status = document.getElementById("status");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var d = new FormData(form);
+    var nom = (d.get("nom") || "").trim(), mail = (d.get("email") || "").trim(), msg = (d.get("message") || "").trim();
+    if (!nom || !/^\S+@\S+\.\S+$/.test(mail) || !msg) {
+      status.textContent = "Renseignez votre nom, un e-mail valide et un message.";
+      return;
+    }
+    var body = msg + "\n\n— " + nom + " (" + mail + ")";
+    location.href = "mailto:votre@email.com?subject=" + encodeURIComponent("Message depuis votre site") + "&body=" + encodeURIComponent(body);
+    status.textContent = "Votre application de messagerie s’ouvre pour envoyer le message.";
+  });
+})();
+</script>
+</body>
+</html>
